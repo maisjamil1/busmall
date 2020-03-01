@@ -67,51 +67,66 @@ function render () {
   console.log(leftProduct);
 
 
+  centerProduct = Product.all[randomNumber(0,Product.all.length-1)];
+  console.log(centerProduct);
+
    rightProduct = Product.all[randomNumber(0,Product.all.length-1)];
   console.log(righProduct);
 
 
 
   leftImage.setAttribute('src',leftProduct.imagePath);
-  leftImage.setAttribute('alt',leftGoat.name);
-  leftImage.setAttribute('title',leftGoat.name);
+  leftImage.setAttribute('alt',(leftProduct.name).split(".",1));//////
+  leftImage.setAttribute('title',leftProduct.name);
+
+  centerImage.setAttribute('src',centerProduct.imagePath);
+  centerImage.setAttribute('alt',(centerProduct.name).split(".",1));
+  centerImage.setAttribute('title',centerProduct.name);
 
 
 
-
-
-  rightImage.setAttribute('src',rightGoat.imagePath);
-  rightImage.setAttribute('alt',rightGoat.name);
-  rightImage.setAttribute('title',rightGoat.name);
+  rightImage.setAttribute('src',rightProduct.imagePath);
+  rightImage.setAttribute('alt',rightProduct.name);
+  rightImage.setAttribute('title',rightProduct.name);
 }
 render();
 
+
+
+
+
+
+
 //(5) add the event listener to render new images
-imageSection.addEventListener('click',handleClickOnGoat);
+imageSection.addEventListener('click',handleClickOnProduct);
 var totalClicks =0;
-function handleClickOnGoat(event) {
+function handleClickOnProduct(event) {
   if(totalClicks <25 ) {
     if(event.target.id !== 'imagesSection') {
       if(event.target.id === 'leftImage') {
-        leftGoat.clicks++;
-      } else if(event.target.id === 'rightImage') {
-        rightGoat.clicks++;
-      }
+        leftProduct.clicks++;
+      } else if(event.target.id === 'imageCenter') {
+        centerProduct.clicks++;
+      }else if(event.target.id === 'rightImage') {
+        rightProduct.clicks++;}
+
       totalClicks++;
-      leftGoat.views++;
-      rightGoat.views++;
+      leftProduct.views++;
+      rightProduct.views++;
+      centerProduct.views++;
+
       render();
     }
   }  else {
-    console.log('more than 5 clicks');
-    imageSection.removeEventListener('click',handleClickOnGoat);
+    console.log('more than 25 clicks');
+    imageSection.removeEventListener('click',handleClickOnProduct);
     render2();
   }
 }
 
 function render2() {
   var ulE1 = document.getElementById('summary');
-  for (var i =0; i<Goat.all.length ; i++) {
+  for (var i =0; i<Product.all.length ; i++) {
     var liE1 = document.createElement('li');
     liE1.textContent = `${Goat.all[i].name} has ${Goat.all[i].clicks} clicks and ${Goat.all[i].views} views`;
     ulE1.appendChild(liE1);
