@@ -21,31 +21,15 @@ var names = [
   "wine-glass.jpg",
 ];
 
-//(1) get the images
+// get the images from html__________________________________
+
 var leftImage = document.getElementById('leftImage');
 var imageCenter = document.getElementById('imageCenter');
 var rightImage = document.getElementById('rightImage');
 
 var imageSection = document.querySelector('#imagesSection');
-//____________________________________________________________
 
-//(2) add src,alt,title to the images to test if ever thing is working
-
-// leftImage.src = `img/${names[0]}.jpg`;
-// leftImage.alt = names[0];
-// leftImage.title = names[0];
-
-// imageCenter.setAttribute('src',`img/${names[1]}.jpg`);
-// imageCenter.alt = names[0];
-// imageCenter.title = names[0];
-
-// rightImage.setAttribute('src',`img/${names[1]}.jpg`);
-// rightImage.setAttribute('alt',names[1]);
-// rightImage.setAttribute('title',names[1]);
-
-//____________________________________________________________
-
-//(3_1) create constructor function for the products
+//(3_1) create constructor function for the products____________________________________
 function Product(name) {
   this.name = name;
   this.clicks = 0;
@@ -55,31 +39,30 @@ function Product(name) {
 }
 
 Product.all = [];
-//______________________________________________________________
-//(3_2) instantiate objects for all the products one shot
+
+//make objects for all the products________________________________________________________
 for (var i = 0; i < names.length; i++) {
   new Product(names[i]);
 }
 
-
-//(4) render 2 random images
+//render for random images__________________________________________________________________
 var leftProduct, centerProduct, rightProduct;
+
 function render() {
   leftProduct = Product.all[randomNumber(0, Product.all.length - 1)];
-  console.log(leftProduct);
-
-
-  centerProduct = Product.all[randomNumber(0, Product.all.length - 1)];
-  console.log(centerProduct);
-
-  rightProduct = Product.all[randomNumber(0, Product.all.length - 1)];
-  console.log(rightProduct);
-
-
-
-  leftImage.setAttribute('src', leftProduct.imagePath);
-  leftImage.setAttribute('alt',(leftProduct.name).split(".", 1));
   
+  centerProduct = Product.all[randomNumber(0, Product.all.length - 1)];
+ 
+  rightProduct = Product.all[randomNumber(0, Product.all.length - 1)];
+ 
+//similar images are not allowed so i need 'while'____________________________________________
+  while( (leftProduct === centerProduct) || (leftProduct === rightProduct) || (centerProduct === rightProduct)){
+    render(); 
+  }
+
+  //i will use split to remove the extension from the name
+  leftImage.setAttribute('src', leftProduct.imagePath);
+  leftImage.setAttribute('alt',(leftProduct.name).split(".", 1));//or mabye i can create an array for the extensions [jpg,png,gif]
   leftImage.setAttribute('title',(leftProduct.name).split(".", 1));
 
   imageCenter.setAttribute('src', centerProduct.imagePath);
@@ -91,16 +74,10 @@ function render() {
   rightImage.setAttribute('src', rightProduct.imagePath);
   rightImage.setAttribute('alt',(rightProduct.name).split(".", 1));
   rightImage.setAttribute('title',(rightProduct.name).split(".", 1));
-}
+};
 render();
 
-
-
-
-
-
-
-//(5) add the event listener to render new images
+//add the event listener________________________________________________________
 imageSection.addEventListener('click', handleClickOnProduct);
 var totalClicks = 0;
 function handleClickOnProduct(event) {
@@ -122,7 +99,6 @@ function handleClickOnProduct(event) {
       render();
     }
   } else {
-    console.log('more than 25 clicks');
     imageSection.removeEventListener('click', handleClickOnProduct);
     render2();
   }
@@ -138,14 +114,7 @@ function render2() {
   }
 }
 
-
-// (5) Where should we add the event listener(for the left or right/ to imagesSection will be better since we will have only one clickListener )
-// 5a identify the  clicked image
-// 5b keep track of how many times the image have been clicked and viewed?
-// 5c re render the images
-
-
-//helper functions
+//helper functions____________________________________________________________-
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
