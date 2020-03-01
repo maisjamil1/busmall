@@ -1,16 +1,16 @@
 var names = [
   "bag.jpg",
   "banana.jpg",
-  "bathroom..jpg",
+  "bathroom.jpg",
   "boots.jpg",
   "breakfast.jpg",
   "bubblegum.jpg",
-  "chais.jpg",
+  "chair.jpg",
   "cthulhu.jpg",
   "dog-duck.jpg",
   "dragon.jpg",
   "pen.jpg",
-  "pet-sweep..jpg",
+  "pet-sweep.jpg",
   "scissors.jpg",
   "shark.jpg",
   "sweep.png",
@@ -26,7 +26,7 @@ var leftImage = document.getElementById('leftImage');
 var imageCenter = document.getElementById('imageCenter');
 var rightImage = document.getElementById('rightImage');
 
-var imageSection = document.querySelector('#imagesSection')
+var imageSection = document.querySelector('#imagesSection');
 //____________________________________________________________
 
 //(2) add src,alt,title to the images to test if ever thing is working
@@ -53,41 +53,44 @@ function Product(name) {
   this.imagePath = `img/${this.name}`;
   Product.all.push(this);
 }
-Product.all =[];
+
+Product.all = [];
 //______________________________________________________________
 //(3_2) instantiate objects for all the products one shot
-for(var i =0; i<names.length; i++) {
+for (var i = 0; i < names.length; i++) {
   new Product(names[i]);
 }
 
+
 //(4) render 2 random images
-var leftProduct,centerProduct,righProduct;
-function render () {
-  leftProduct = Product.all[randomNumber(0,Product.all.length-1)];
+var leftProduct, centerProduct, rightProduct;
+function render() {
+  leftProduct = Product.all[randomNumber(0, Product.all.length - 1)];
   console.log(leftProduct);
 
 
-  centerProduct = Product.all[randomNumber(0,Product.all.length-1)];
+  centerProduct = Product.all[randomNumber(0, Product.all.length - 1)];
   console.log(centerProduct);
 
-   rightProduct = Product.all[randomNumber(0,Product.all.length-1)];
-  console.log(righProduct);
+  rightProduct = Product.all[randomNumber(0, Product.all.length - 1)];
+  console.log(rightProduct);
 
 
 
-  leftImage.setAttribute('src',leftProduct.imagePath);
-  leftImage.setAttribute('alt',(leftProduct.name).split(".",1));//////
-  leftImage.setAttribute('title',leftProduct.name);
+  leftImage.setAttribute('src', leftProduct.imagePath);
+  leftImage.setAttribute('alt',(leftProduct.name).split(".", 1));
+  
+  leftImage.setAttribute('title',(leftProduct.name).split(".", 1));
 
-  centerImage.setAttribute('src',centerProduct.imagePath);
-  centerImage.setAttribute('alt',(centerProduct.name).split(".",1));
-  centerImage.setAttribute('title',centerProduct.name);
+  imageCenter.setAttribute('src', centerProduct.imagePath);
+  imageCenter.setAttribute('alt', (centerProduct.name).split(".", 1));
+  imageCenter.setAttribute('title',(centerProduct.name).split(".", 1));
 
 
 
-  rightImage.setAttribute('src',rightProduct.imagePath);
-  rightImage.setAttribute('alt',rightProduct.name);
-  rightImage.setAttribute('title',rightProduct.name);
+  rightImage.setAttribute('src', rightProduct.imagePath);
+  rightImage.setAttribute('alt',(rightProduct.name).split(".", 1));
+  rightImage.setAttribute('title',(rightProduct.name).split(".", 1));
 }
 render();
 
@@ -98,17 +101,18 @@ render();
 
 
 //(5) add the event listener to render new images
-imageSection.addEventListener('click',handleClickOnProduct);
-var totalClicks =0;
+imageSection.addEventListener('click', handleClickOnProduct);
+var totalClicks = 0;
 function handleClickOnProduct(event) {
-  if(totalClicks <25 ) {
-    if(event.target.id !== 'imagesSection') {
-      if(event.target.id === 'leftImage') {
+  if (totalClicks < 25) {
+    if (event.target.id !== 'imagesSection') {
+      if (event.target.id === 'leftImage') {
         leftProduct.clicks++;
-      } else if(event.target.id === 'imageCenter') {
+      } else if (event.target.id === 'imageCenter') {
         centerProduct.clicks++;
-      }else if(event.target.id === 'rightImage') {
-        rightProduct.clicks++;}
+      } else if (event.target.id === 'rightImage') {
+        rightProduct.clicks++;
+      }
 
       totalClicks++;
       leftProduct.views++;
@@ -117,18 +121,19 @@ function handleClickOnProduct(event) {
 
       render();
     }
-  }  else {
+  } else {
     console.log('more than 25 clicks');
-    imageSection.removeEventListener('click',handleClickOnProduct);
+    imageSection.removeEventListener('click', handleClickOnProduct);
     render2();
   }
 }
 
 function render2() {
   var ulE1 = document.getElementById('summary');
-  for (var i =0; i<Product.all.length ; i++) {
+  for (var i = 0; i < Product.all.length; i++) {
     var liE1 = document.createElement('li');
-    liE1.textContent = `${Goat.all[i].name} has ${Goat.all[i].clicks} clicks and ${Goat.all[i].views} views`;
+     Product.all[i].name=(Product.all[i].name).split(".")[0];
+    liE1.textContent = `${Product.all[i].name} has ${Product.all[i].clicks} clicks and ${Product.all[i].views} views`;
     ulE1.appendChild(liE1);
   }
 }
