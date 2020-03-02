@@ -104,17 +104,109 @@ function handleClickOnProduct(event) {
   }
 }
 
-function render2() {
-  var ulE1 = document.getElementById('summary');
-  for (var i = 0; i < Product.all.length; i++) {
-    var liE1 = document.createElement('li');
-     Product.all[i].name=(Product.all[i].name).split(".")[0];
-    liE1.textContent = `${Product.all[i].name} has ${Product.all[i].clicks} clicks and ${Product.all[i].views} views`;
-    ulE1.appendChild(liE1);
-  }
-}
+// function render2() {
+//   var ulE1 = document.getElementById('summary');
+//   for (var i = 0; i < Product.all.length; i++) {
+//     var liE1 = document.createElement('li');
+//      Product.all[i].name=(Product.all[i].name).split(".")[0];
+//     liE1.textContent = `${Product.all[i].name} has ${Product.all[i].clicks} clicks and ${Product.all[i].views} views`;
+//     ulE1.appendChild(liE1);
+//   }
+// }
 
-//helper functions____________________________________________________________-
+//helper functions____________________________________________________________
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+//____________________________________________________________________________
+
+
+var names$$$=[];
+var clicks$$$=[];
+var views$$$=[];
+
+
+function render2() {
+  for(var i=0;i<Product.all.length;i++){
+    var currentStatus=Product.all[i]
+    names$$$.push((currentStatus.name).split('.',1));
+    clicks$$$.push(currentStatus.clicks);
+  }
+  var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels:names$$$,
+        datasets: [{
+            label: '# of Votes',
+            data: clicks$$$,
+            backgroundColor: 
+                'rgb(255, 99, 132)',
+                
+    
+            borderColor: [
+            
+                'rgb(255, 159, 64)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var ctx = document.getElementById('myChart').getContext('2d');
+// var myChart = new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//         datasets: [{
+//             label: '# of Votes',
+//             data: [12, 19, 3, 5, 2, 3],
+//             backgroundColor: 
+//                 'rgba(255, 99, 132, 0.2)',
+                
+    
+//             borderColor: [
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(255, 206, 86, 1)',
+//                 'rgba(75, 192, 192, 1)',
+//                 'rgba(153, 102, 255, 1)',
+//                 'rgba(255, 159, 64, 1)'
+//             ],
+//             borderWidth: 1
+//         }]
+//     },
+//     options: {
+//         scales: {
+//             yAxes: [{
+//                 ticks: {
+//                     beginAtZero: true
+//                 }
+//             }]
+//         }
+//     }
+// });
