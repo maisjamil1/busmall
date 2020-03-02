@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Lobster|Pacifico&display=swap");
+
 #imagesSection {
   max-width: 90%;
   margin: 0 auto;
@@ -6,8 +8,114 @@
 img {
   width: 300px;
   height: 300px;
-  border: 10px solid greenyellow;
+  
   padding: 10px;
   margin: 10px;
-  border-radius: 5px;
+  border-radius: 200px;
+}
+
+h1
+{font-family:'Lobster';
+  color: white;
+  font-size:80px;
+
+}
+
+h2{
+  font-family:'Pacifico';
+  
+  font-size :70px;;
+  margin: 100px 150px 10px 150px;
+  color: rgb(235, 192, 52);
+  text-align: center;
+
+}
+
+p{
+  font-family:Georgia, Times;
+  font-size:44px;
+  text-align: center;
+  padding:10px;
+  color: rgb(3, 1, 0);
+  background-color:rgba(236, 154, 154, 0.876);
+  display: inline-block;
+  width: 900px;
+  margin: 10px 800px;
+  
+
+}
+body{
+  background-image: url('img/75c875dbd89046580d4b288f8ed82b3c.jpg');
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+}
+header{
+  background-color: rgba(36, 32, 32, 0.664);
+  height:200px;
+  width: 100%;
+  margin:0 ;
+
+}
+header img{
+  display: inline-block;
+  width:250px;
+  height: 200px;
+  margin-left:20px;
+  position: relative;
+  bottom:150px;
+  /* float: left; */
+}
+h1{
+  margin-left:400px;
+  position: relative;
+  top:70px;
+  font-size:50px;
+  font-weight: 800;
+} 
+nav{
+  display: inline;
+  float: right;
+  margin-right:400px;
+  position: relative;
+  bottom:50px;
+  font-size:70px;
+} 
+
+h1
+{font-family:'Lobster';
+  color: white;
+  font-size:70px;
+
+}
+a{
+  padding:0 70px;
+  margin:0 20px;
+  display: inline-block;
+  background-color: rgb(255, 255, 255);
+  border-radius:20px;
+  
+}
+a:hover{
+  background-color: rgb(5, 191, 216);
+
+}
+#imagesSection {
+  background-color: rgba(87, 121, 126, 0.671);
+  /* background-image: url('img/75c875dbd89046580d4b288f8ed82b3c.jpg'); */ */
+  height: 100%;
+  width: 2000px;
+  margin:100px auto;
+  position: relative;
+  top:70px;
+
+}
+ul{
+margin:50px auto;
+background-color: rgba(87, 121, 126, 0.842);
+color: black;
+font-size: 40px;
+text-align: center;
+height: 100%;
+  width: 2000px;
 }
