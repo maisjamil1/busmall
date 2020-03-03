@@ -1,3 +1,5 @@
+'use strict';
+
 var names = [
   "bag.jpg",
   "banana.jpg",
@@ -20,12 +22,8 @@ var names = [
   "water-can.jpg",
   "wine-glass.jpg",
 ];
+var triesdifre=[];
 
-//===============================
-var leftArr=[];
-var centerArr=[];
-var RightArr=[];
-//===============================
 
 // // get the images from html__________________________________
 
@@ -46,6 +44,7 @@ function Product(name) {
 
 Product.all = [];
 
+
 // //make objects for all the products________________________________________________________
 for (var i = 0; i < names.length; i++) {
   new Product(names[i]);
@@ -60,48 +59,22 @@ function render() {
   centerProduct = Product.all[randomNumber(0, Product.all.length - 1)];
  
   rightProduct = Product.all[randomNumber(0, Product.all.length - 1)];
-  // ==========================
-  var left$$$=leftProduct;
-  var right$$$=rightProduct;
-  var center$$$=centerProduct;
- leftArr.push(left$$$);
- centerArr.push();
- RightArr.push(right$$$);
+
  
-// =======================================
+// ________________________________________________________
  
 //similar images are not allowed so i need 'while'____________________________________________
-  while( (leftProduct === centerProduct) || (leftProduct === rightProduct) || (centerProduct === rightProduct)){
-    render(); 
+  while( (leftProduct === centerProduct) || (leftProduct === rightProduct) || (centerProduct === rightProduct) || triesdifre.includes(leftProduct.imagePath)|| triesdifre.includes(centerProduct.imagePath)|| triesdifre.includes(rightProduct.imagePath))
+  {
+    leftProduct = Product.all[randomNumber(0, Product.all.length - 1)];
+  
+  centerProduct = Product.all[randomNumber(0, Product.all.length - 1)];
+ 
+  rightProduct = Product.all[randomNumber(0, Product.all.length - 1)];
   }
-  // =====================================
-  var prepArr=function(arr){
-    return arr.map(function(elem){
-  return JSON.stringify(elem);
+  
 
-    })
-  }
-  var strArrleft=prepArr(leftArr);
-  var strArrRight=prepArr(RightArr);
-  var strArrCenter=prepArr(centerArr);
-  var triesSeq=[];
-for(var i=0;i<25;i++){
-  var tryContent=[strArrleft[i],strArrCenter[i],strArrRight[i]];
-  triesSeq.push(tryContent);///////////////////
-}
-for(var i=0;i<25;i++){
-  var firstTry=triesSeq[i];
-  var secondTry=triesSeq[i+1];
-  var strFirstTry=firstTry;
-  var strSecondTry=secondTry;
-  if(strFirstTry===strSecondTry){
-    render(); 
-
-  }
-
-
-}
-  // ==========================================
+  //________________________________________________________
 
 //   //i will use split to remove the extension from the name
   leftImage.setAttribute('src', leftProduct.imagePath);
@@ -118,6 +91,11 @@ for(var i=0;i<25;i++){
   rightImage.setAttribute('alt',(rightProduct.name).split(".", 1));
   rightImage.setAttribute('title',(rightProduct.name).split(".", 1));
 
+triesdifre=[leftProduct.imagePath,centerProduct.imagePath,rightProduct.imagePath];
+///او بصير اعمل 
+// triesdifre[0]=leftProduct.imagePath;
+// triesdifre[1]=centerProduct.imagePath;
+// triesdifre[2]=rightProduct.imagePath;
 
 };
 render();
@@ -149,15 +127,7 @@ function handleClickOnProduct(event) {
   }
 }
 
-// function render2() {
-//   var ulE1 = document.getElementById('summary');
-//   for (var i = 0; i < Product.all.length; i++) {
-//     var liE1 = document.createElement('li');
-//      Product.all[i].name=(Product.all[i].name).split(".")[0];
-//     liE1.textContent = `${Product.all[i].name} has ${Product.all[i].clicks} clicks and ${Product.all[i].views} views`;
-//     ulE1.appendChild(liE1);
-//   }
-// }
+
 
 // //helper functions____________________________________________________________
 function randomNumber(min, max) {
@@ -172,10 +142,21 @@ var views$$$=[];
 
 
 function render2() {
+  var ulE1 = document.getElementById('summary');
+    for (var i = 0; i < Product.all.length; i++) {
+      var liE1 = document.createElement('li');
+       Product.all[i].name=(Product.all[i].name).split(".")[0];
+      liE1.textContent = `${Product.all[i].name} has ${Product.all[i].clicks} clicks and ${Product.all[i].views} views`;
+      ulE1.appendChild(liE1);
+    }
+
+
+
   for(var i=0;i<Product.all.length;i++){
     var currentStatus=Product.all[i]
     names$$$.push((currentStatus.name).split('.',1));
     clicks$$$.push(currentStatus.clicks);
+    views$$$.push(currentStatus.views);
   }
   var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
@@ -183,7 +164,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels:names$$$,
         datasets: [{
-            label: '# of Votes',
+            label: '# of Clicks',
             data: clicks$$$,
             backgroundColor: 
                 '  rgba(36, 32, 32, 0.664)',
@@ -194,7 +175,20 @@ var myChart = new Chart(ctx, {
                 'rgb(255, 159, 64)'
             ],
             borderWidth: 1
-        }]
+        },
+        {
+          label: '# of Views',
+          data: views$$$,
+          backgroundColor: 
+              'rgb(5, 191, 216)',
+              
+  
+          borderColor: [
+          
+              'rgb(255, 159, 64)'
+          ],
+          borderWidth: 1
+      }]
     },
     options: {
         scales: {
@@ -297,29 +291,6 @@ var myChart = new Chart(ctx, {
 
 
 
-// var prepArr=function(arr){
-//   return arr.map(function(elem){
-// return JSON.stringify(elem);
-
-//   })
-// }
-// var strArrleft=prepArr(leftArr);
-// var strArrRight=prepArr(RightArr);
-// var strArrCenter=prepArr(centerArr);
-// // console.log(strArrleft);
-// // console.log(strArrRight);
-// // console.log(strArrCenter);
-// console.log(leftArr);
-// console.log(RightArr);
-// console.log(centerArr);
-
-
-
-// var triesSeq=[];
-// for(var i=0;i<25;i++){
-//   var tryContent=[strArrleft[i],strArrCenter[i],strArrRight[i]];
-//   triesSeq.push(tryContent);///////////////////
-// }
 
 
 
