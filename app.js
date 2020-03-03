@@ -123,6 +123,7 @@ function handleClickOnProduct(event) {
     }
   } else {
     imageSection.removeEventListener('click', handleClickOnProduct);
+    updateProduct();
     render2();
   }
 }
@@ -208,8 +209,25 @@ var myChart = new Chart(ctx, {
 
  
  
+// update Product
+function updateProduct() {
+  var productString = JSON.stringify(Product.all);
+  localStorage.setItem('products', productString);
+}
 
 
+//get all products
+function getProducts() {
+  var productString = localStorage.getItem('products');
+  console.log(productString);
+  if(productString) {
+    Product.all = JSON.parse(productString);
+    console.log(Product.all);
+    render2();
+
+  }
+}
+getProducts();
 
 
 
