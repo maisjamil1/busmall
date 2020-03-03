@@ -20,6 +20,7 @@ var names = [
   "water-can.jpg",
   "wine-glass.jpg",
 ];
+
 //===============================
 var leftArr=[];
 var centerArr=[];
@@ -213,6 +214,21 @@ var myChart = new Chart(ctx, {
 
  
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
