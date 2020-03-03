@@ -110,7 +110,7 @@ a:hover{
   top:70px;
 
 }
-ul{
+/* ul{
 margin:50px auto;
 background-color: rgba(87, 121, 126, 0.842);
 color: black;
@@ -118,4 +118,8 @@ font-size: 40px;
 text-align: center;
 height: 100%;
   width: 2000px;
+} */
+#myChart{
+  background-color: rgba(240, 248, 255, 0.876);
+
 }
