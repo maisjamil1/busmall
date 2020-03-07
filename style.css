@@ -26,8 +26,8 @@ h2{
   
   font-size :70px;;
   margin: 100px 150px 10px 150px;
-  color: rgb(235, 192, 52);
-  text-align: center;
+  color: rgb(36, 32, 32)
+ 
 
 }
 
@@ -36,7 +36,7 @@ p{
   font-size:44px;
   text-align: center;
   padding:10px;
-  color: rgb(3, 1, 0);
+  color:rgb(36, 32, 32);
   background-color:rgba(236, 154, 154, 0.876);
   display: inline-block;
   width: 900px;
@@ -51,7 +51,7 @@ body{
   background-attachment: fixed;
 }
 header{
-  background-color: rgba(36, 32, 32, 0.664);
+  background-color: rgba(128, 125, 125, 0.664);
   height:200px;
   width: 100%;
   margin:0 ;
@@ -84,7 +84,7 @@ nav{
 
 h1
 {font-family:'Lobster';
-  color: white;
+  color: rgb(36, 32, 32);
   font-size:70px;
 
 }
@@ -112,7 +112,7 @@ a:hover{
 
 ul{
 margin:50px auto;
-background-color: rgba(87, 121, 126, 0.842);
+background-color:rgba(87, 121, 126, 0.671);
 color: black;
 font-size: 40px;
 text-align: center;
